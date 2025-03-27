@@ -35,6 +35,9 @@ print(mae)
 # An MAE of 145.841 suggests that, on average, the predicted seedling counts deviate from observed values by about 146 seedlings per plot 
 # This could indicate that the model is struggling to capture the variation in seedling counts effectively.
 
+## ASW: nice! though the seedling values do range from 0 to >2000.
+
+
 ## 1b)
 plot_predictions(nb_model, condition = c("Treatment"))
 # Visual Interpretation: The plot shows that parasitized trees tend to have more seedlings than unparasitized trees, 
@@ -48,6 +51,10 @@ print(exp_coef)
 # This means that under parasitized trees, the expected number of seedlings is **~308 per plot**.
 # - **Effect of `Treatmentunparasitized` (`exp(-3.16) = 0.0425`)**  This means that seedling counts under **unparasitized trees** are **only ~4.25%** of those under parasitized trees.  
 # Equivalently, parasitized trees have **~23.5 times more seedlings** than unparasitized trees (**1/0.0425 ≈ 23.5**).
+
+##ASW: Nice work!!
+
+
 # We could say that
 #1. **Strong Effect of Mistletoe Parasitism:**  
 #  - Parasitized trees have **significantly higher** seedling densities than unparasitized trees.
@@ -64,6 +71,8 @@ print(nb_model21)
 #This suggests that mistletoe’s role in shaping forest regeneration is more pronounced in drier conditions, potentially because parasitized trees create microhabitats that retain 
 #moisture or improve soil conditions for seedling establishment."
 
+## 30/30
+
 ## Question 2:
 treemortality <- read.csv("treemortality.csv")
 head(treemortality)
@@ -77,10 +86,14 @@ summary(glm_model)
 #The odds of tree mortality in thinned areas are about 84% lower compared to unthinned areas, 
 #supporting the hypothesis that thinning treatments are effective in reducing tree mortality due to wildfire.
 
+## ASW: beautiful! what kind of metric of model fit might you use here?
+
 ## 2b)
 # researchers randomized their sampling by tree size. This means that, during the post-fire resampling in 2023, they made sure to select both small 
 # and large trees equally from both thinned and unthinned areas. That means, that model can estimate the effect of thinning on mortality without worrying 
 # about tree size influencing the outcome.
+
+## ASW: Good! No influence on estimation of thinning effect
 
 ## 2c) 
 # Refit the model with slope and roaddist as additional predictors
@@ -99,3 +112,10 @@ summary(glm_model_updated)
 #In Model 2, slope and roaddist are both statistically significant and contribute substantially to explaining tree mortality. The positive 
 # coefficients suggest that steeper slopes and greater distance from roads increase the likelihood of mortality, highlighting their importance as 
 # confounders.
+
+
+## ASW: Nicely done! Yes, the key thing here is that slope and distance from roads are biasing the effect of thinning in the first model, making it appear more effective than it is because of the fact that thinning treatments are more likely to occur in locations where fire severity is already lower (closer to roads, on shallower slopes). The predicted effect of thinning in the first model is a decrease in mortality from 73% to 29%, but in the second model, this effect decreases (Mortality decreases from 54% to 29%)
+
+## 19/20
+## total = 49/50
+
